@@ -1,0 +1,174 @@
+/* General styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    justify-content: flex;
+    background-color: #282c34;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Navigation styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F9F6EE;
+    padding: 0px 20px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav li {
+    margin-right: 20px;
+    padding: 0;
+}
+
+nav li:last-child {
+    margin-right: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: #666;
+}
+
+/* Second List */
+a {
+    color: #282c34;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: square;
+    color: #666;
+}
+
+/* Home page styling */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+h1, h2 {
+    font-weight: normal;
+}
+
+
+h1 {
+    font-size: 36px;
+    margin-top: 0;
+    color: #333;
+}
+
+h2 {
+    font-size: 36px;
+    margin-top: 0;
+    color: #fff;
+}
+
+p {
+    color: #fff
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    color: #282c34;
+    text-align: center;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #F9F6EE;
+    border-radius: 20px;
+}
+
+
+/* Brainstorming Tools page styling */
+.brainstorming-tools {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.brainstorming-tools h2 {
+    font-size: 36px;
+    margin-top: 0;
+}
+
+.brainstorming-tools ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.brainstorming-tools li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #c2c2c2;
+    border-radius: 20px;
+}
+
+.brainstorming-tools ul li::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #9b9b9b;
+}
+
+.brainstorming-tools a {
+    color: #000;
+}
+
+
+/* Media queries for tablet and mobile responsiveness */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .shape-list li {
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .shape-list li {
+        width: 100%;
+    }
+}
+
+@media  screen and (max-width: 699px) {
+    header {
+        flex-direction: column;
+    }
+    
+}
