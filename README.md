@@ -23,4 +23,7 @@
 
 ***
 
+
+## Important Note = Due to Workload from my work I wasn't able to finish Jinja templating. I will be updating this page during the week consatantly. 
+
 Written By Taha Mirhan Tanriverdi
