@@ -20,7 +20,6 @@ idea_gen = [
     'A website for buying and selling secondhand clothing'
 ]
 
-
 # Home page
 @app.route('/')
 def index():
