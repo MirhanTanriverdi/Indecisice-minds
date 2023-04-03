@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Indecisive Minds - Helping You Choose a Website Topic{% endblock %}
+
+
+{% block content %}
+  <h2>Idea Generator</h2>
+  <div class="container">
+    <h2>Can't Decide What to Do?</h2>
+    <p>Click the button below to generate a random idea!</p>
+    {% if idea %}
+      <p>Your idea: {{ idea }}</p>
+    {% endif %}
+    <form method="POST">
+      <button type="submit">Generate Idea</button>
+    </form>
+  <div id="idea-output">
+    
+  </div>
+{% endblock %}
+
