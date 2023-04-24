@@ -1,10 +1,10 @@
-from app.app import create_app
+# from app.app import create_ap
 from app.models import Idea
 from app.extensions.database import db
 
-if __name__ == '__main__':
-    app = create_app()
-    app.app_context().push()
+# if __name__ == '__main__':
+#     app = create_app()
+#     app.app_context().push()
 
 
 good_website_ideas = [
