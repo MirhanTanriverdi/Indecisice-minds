@@ -30,11 +30,12 @@ good_website_ideas = [
     'A website for discovering and supporting crowdfunding campaigns and projects'
 ]
 
-for item in good_website_ideas:
-    idea = Idea(description=item)
+def seeding():
+    for item in good_website_ideas:
+        idea = Idea(description=item)
 
-    db.session.add(idea)
+        db.session.add(idea)
 
-db.session.commit()
+    db.session.commit()
 
 

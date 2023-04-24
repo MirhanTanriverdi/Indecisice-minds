@@ -1,6 +1,7 @@
 from flask import Flask, render_template, Blueprint, redirect, url_for, request, flash
 import random
 from app.extensions.database import db, migrate
+from app.scripts.seed import seeding
 
 from .models import Idea, User
 
@@ -75,5 +76,10 @@ def create_app():
         print(idea_id)
         idea = Idea.query.filter_by(id=idea_id).first()
         return render_template('ideas_detail.html', idea=idea)
+
+    @app.route('/run-seed')
+    def run_seed():
+        seeding()
+        return "Ran seed"
 
     return app
