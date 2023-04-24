@@ -76,7 +76,7 @@ p {
 }
 
 a {
-    color: #282c34;
+    color: #F9F6EE;
     text-decoration: none;
 }
 
@@ -138,7 +138,6 @@ button:hover {
     font-weight: bold;
 }
 
-
 /* Media queries for tablet and mobile responsiveness */
 @media only screen and (max-width: 768px) {
     .container {
@@ -166,3 +165,4 @@ button:hover {
     }
     
 }
+

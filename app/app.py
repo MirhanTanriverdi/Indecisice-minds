@@ -1,41 +1,79 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, Blueprint, redirect, url_for, request, flash
 import random
+from app.extensions.database import db, migrate
+
+from .models import Idea, User
+
+def create_app():
+
+    app = Flask(__name__)
+    app.config.from_object("app.config")
+
+    db.init_app(app)  # Initialize the SQLAlchemy instance with the Flask app
+    migrate.init_app(app, db, compare_type=True)
+
+    # Home page
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
+    idea_gen_bp = Blueprint('idea_gen', __name__, template_folder='templates')
+
+    @idea_gen_bp.route('/idea-gen', methods=['GET', 'POST'])
+    def idea_generator():
+        ideas = []
+        if request.method == "POST":
+            idea = request.form.get('description')
+            new_idea = Idea(description=idea)
+        
+            db.session.add(new_idea)
+            db.session.commit()
+        elif request.method == 'GET':
+            ideas = Idea.query.all() 
+            ideas = random.sample(ideas, min(1, len(ideas)))
+
+        return render_template('idea-gen.html', ideas=ideas)
 
 
-app = Flask(__name__)
+    @idea_gen_bp.route('/idea-gen-delete', methods=['GET', 'POST'])
+    def delete_idea():
+        if request.method == "POST":
+            id = request.form.get("idea_id")
+            idea = Idea.query.filter_by(id=id).first()
+            db.session.delete(idea)
+            db.session.commit()
+            
+        return redirect(url_for('idea_gen.idea_generator'))
 
-app.config.from_object('app.config')
+    @idea_gen_bp.route('/idea-gen-edit', methods=['GET', 'POST'])
+    def edit_idea():
+        if request.method == "POST":
+            id = request.form.get("idea_id")
+            idea = Idea.query.filter_by(id=id).first()
+            idea.description = request.form.get("description")
+            
+            db.session.add(idea)
+            db.session.commit()
+            
+        return redirect(url_for('idea_gen.idea_generator'))
 
-# Idea dixtionary
-idea_gen = [
-    'An online marketplace for local artists to sell their art',
-    'A recipe sharing and meal planning website',
-    'A platform for booking and managing vacation rentals',
-    'A job search engine for remote work opportunities',
-    'A news aggregator with a personalized feed based on user interests',
-    'A platform for connecting volunteers with local non-profits',
-    'An online course marketplace for learning new skills',
-    'A social network for pet owners to connect and share advice',
-    'A platform for booking and managing appointments with health practitioners',
-    'A website for buying and selling secondhand clothing'
-]
+    app.register_blueprint(idea_gen_bp)
 
-# Home page
-@app.route('/')
-def index():
-    return render_template('index.html')
+    @app.route('/idea-list', methods=['GET'])
+    def idea_list_2():
+        ideas = Idea.query.all()
+        return render_template('idea-list.html', ideas=ideas)
 
-# Idea generator page
-@app.route('/idea-gen', methods=['GET', 'POST'])
-def idea_generator():
-    idea = None
-    if request.method == "POST":
-        idea = random.choice(idea_gen)
-    return render_template('idea-gen.html', idea=idea)
+    # Brainstorming tools page
+    @app.route('/brainstorming-tools')
+    def brainstorming_tools():
+        return render_template('brain.html')
 
-# Brainstorming tools page
-@app.route('/brainstorming-tools')
-def brainstorming_tools():
-    return render_template('brain.html')
+    # Route to display a specific idea based on its ID
+    @app.route('/idea-list/<int:idea_id>')
+    def idea_detail(idea_id):
+        print(idea_id)
+        idea = Idea.query.filter_by(id=idea_id).first()
+        return render_template('ideas_detail.html', idea=idea)
 
-
+    return app

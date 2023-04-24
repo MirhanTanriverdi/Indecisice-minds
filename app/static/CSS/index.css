@@ -104,6 +104,32 @@ li {
   border-radius: 20px;
 }
 
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+textarea {
+  padding: 8px;
+  font-size: 14px;
+  resize: none;
+}
+
+form.idea-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+
 /* Media queries for tablet and mobile responsiveness */
 @media only screen and (max-width: 768px) {
   .container {

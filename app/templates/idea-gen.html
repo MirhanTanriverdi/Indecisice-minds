@@ -1,21 +1,39 @@
 {% extends 'base.html' %}
 
-{% block title %}Indecisive Minds - Helping You Choose a Website Topic{% endblock %}
-
 
 {% block content %}
-  <h2>Idea Generator</h2>
-  <div class="container">
-    <h2>Can't Decide What to Do?</h2>
-    <p>Click the button below to generate a random idea!</p>
-    {% if idea %}
-      <p>Your idea: {{ idea }}</p>
-    {% endif %}
-    <form method="POST">
-      <button type="submit">Generate Idea</button>
-    </form>
-  <div id="idea-output">
-    
-  </div>
+<h2>Idea Generator</h2>
+
+<form method="GET" action="{{ url_for('idea_gen.idea_generator') }}">
+    <button type="submit">Generate Idea</button>
+</form>
+
+{% if ideas %}
+    <ul>
+    {% for idea in ideas %}
+        <li>{{ idea.description }}</li> 
+        <form method="POST" action="{{ url_for('idea_gen.edit_idea') }}">
+            <input type="hidden" name="idea_id" value="{{ idea.id }}">
+            <textarea class="form-control" name="description" rows="3" placeholder="edit your idea"></textarea>
+            <button type="submit">Edit</button>
+        </form>
+        <form method="POST" action="{{ url_for('idea_gen.delete_idea') }}">
+            <input type="hidden" name="idea_id" value="{{ idea.id }}">
+            <button type="submit">Delete</button>
+        </form>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<h2>Add Your Idea</h2>
+<form method="POST" action="{{ url_for('idea_gen.idea_generator') }}">
+    <div class="form-group">
+        <textarea class="form-control" name="description" rows="3" placeholder="Enter your idea here..."></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Idea</button>
+</form>
+
+<li><a href="{{ url_for('idea_list_2') }}">All Ideas</a></li>
+
 {% endblock %}
 
