@@ -5,7 +5,7 @@
 <h2>Idea Generator</h2>
 
 <form method="GET" action="{{ url_for('idea_gen.idea_generator') }}">
-    <button type="submit">Generate Idea</button>
+    <button class="btn" type="submit">Generate Idea</button>
 </form>
 
 {% if ideas %}
@@ -14,26 +14,61 @@
         <li>{{ idea.description }}</li> 
         <form method="POST" action="{{ url_for('idea_gen.edit_idea') }}">
             <input type="hidden" name="idea_id" value="{{ idea.id }}">
-            <textarea class="form-control" name="description" rows="3" placeholder="edit your idea"></textarea>
-            <button type="submit">Edit</button>
+            <textarea class="form-control idea-textarea" name="description" rows="3" placeholder="edit your idea"></textarea>
+            <button id="edit-form" class="btn btn-danger idea-button" type="submit">Edit</button>
         </form>
-        <form method="POST" action="{{ url_for('idea_gen.delete_idea') }}">
+        <form id="delete-idea" method="POST" action="{{ url_for('idea_gen.delete_idea') }}">
             <input type="hidden" name="idea_id" value="{{ idea.id }}">
-            <button type="submit">Delete</button>
+            <button class="btn btn-danger idea-button" id="delete-button" type="submit">Delete</button>
         </form>
     {% endfor %}
     </ul>
 {% endif %}
 
 <h2>Add Your Idea</h2>
-<form method="POST" action="{{ url_for('idea_gen.idea_generator') }}">
+<form id="add-idea-form" method="POST" action="{{ url_for('idea_gen.idea_generator') }}">
     <div class="form-group">
-        <textarea class="form-control" name="description" rows="3" placeholder="Enter your idea here..."></textarea>
+        <textarea class="form-control idea-textarea" name="description" rows="3" placeholder="Enter your idea here..."></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Add Idea</button>
+    <button type="submit" class="btn btn-primary idea-button">Add Idea</button>
 </form>
-
+<ul>
 <li><a href="{{ url_for('idea_list_2') }}">All Ideas</a></li>
+</ul>
+
+
+<script>
+    const deleteButton = document.querySelector('#delete-button');
+    const deleteForm = document.querySelector('#delete-form');
+
+    deleteButton.addEventListener('click', () => {
+        const confirmDelete = confirm('Do you really want to delete this idea? It cancome handy in the future!');
+        if (confirmDelete) {
+            deleteForm.submit();
+        }
+    })
+
+    const form = document.querySelector('#add-idea-form');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const description = event.target.elements.description.value;
+        const message = `You added the idea: "${description}"`;
+        alert(message);
+        form.submit();
+        event.target.elements.description.focus();
+    });
+
+    const textareas = document.querySelectorAll('textarea');
+    textareas.forEach((textarea) => {
+        textarea.addEventListener('keydown', (event) => {
+            if (event.keyCode === 13 && !event.shiftKey) {
+                event.preventDefault();
+                form.submit();
+            }
+        });
+    });
+</script>
+
 
 {% endblock %}
 

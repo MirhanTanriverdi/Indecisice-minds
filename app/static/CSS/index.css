@@ -128,7 +128,60 @@ form.idea-form {
   align-items: flex-start;
 }
 
+form {
+  display: block;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  max-width: 500px;
+}
 
+label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+textarea {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius: 8px;
+  line-height: 1.5;
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding: 10px;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn {
+  display: block;
+  margin: 0 auto;
+  background-color: #666;
+  border-color: #b9b6b6;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 20px;
+}
+
+.btn:hover {
+  background-color: #8a8888;
+}
+
+.btn:active {
+  background-color: #ccc;
+  border-color: #ccc;
+}
 
 /* Media queries for tablet and mobile responsiveness */
 @media only screen and (max-width: 768px) {
