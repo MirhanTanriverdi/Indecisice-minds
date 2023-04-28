@@ -49,8 +49,7 @@ flask run
 
 * The idea for this project was inspired by the need for a creative tool to aid in website idea generation.
 
-* Special thanks to Flask, SQLAlchemy, and Render for providing the tools necessary to build this application.
-
+* We are grateful to the open source communities behind Flask and SQLAlchemy for providing the powerful tools necessary to build this application. Additionally, we thank Render for their reliable and user-friendly web hosting platform.
 
 
 
