@@ -26,23 +26,36 @@ To run the application locally, follow these steps:
 git clone https://github.com/MirhanTanriverdi/Indecisice-minds.git
 ```
 
-2. Install the requirement packages.
+2. Activate Venv.
+
+```
+source venv/bin/activate
+```
+
+3. Install the requirement packages.
 
 ```
 pip install -r requirements.txt
 ```
 
-3. Set up the databse.
+4. Set up the databse.
+
 ```
 flask db init
 flask db migrate
 flask db upgrade
 ```
-4. Run the application.
+5. Run the application.
+
 ```
 flask run
 ```
 
+6. deactivating Venv.
+
+```
+deactivate
+```
 
 ## Acknowledgments
 
