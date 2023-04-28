@@ -1,12 +1,13 @@
-# Indesive Minds 
+#   🤔 Indesive Minds 🤔
 
 ## Description
 ### Indecisive Minds Website is a web application that helps users generate new website ideas and provides brainstorming tools to aid in the creative process. 
 
 ### It is built using Flask, SQLAlchemy, and Render, and uses HTML, CSS, and a little bit of JS for the front-end.
 
+### 🚀 https://indecisice-minds.onrender.com 🚀
 ---
-## Features
+## Features 🧳
 
 * Idea Generator: The Idea Generator page is where the magic happens! By simply clicking a button, users can generate random website ideas to inspire their next project. If you have your own wild and creative ideas, you can also add them to the mix. And if an idea doesn't quite hit the mark, you can easily delete it and try again. The Idea Generator is perfect for those feeling indecisive or stuck in a creative rut, providing an endless supply of inspiration to get your creative juices flowing.
 
